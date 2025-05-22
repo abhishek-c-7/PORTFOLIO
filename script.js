@@ -1,26 +1,20 @@
-// Toggle the navigation menu on small screens
-const toggleButton = document.querySelector("#toggle-navbar");
-const menu = document.querySelector("#menu");
-
-toggleButton.addEventListener("click", () => {
-  menu.classList.toggle("open");
-});
-
-// Smooth scrolling for anchor links
-const links = document.querySelectorAll('a[href^="#"]');
-links.forEach(link => {
-  link.addEventListener("click", (e) => {
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
     e.preventDefault();
-    const targetId = link.getAttribute("href").substring(1);
-    const targetElement = document.getElementById(targetId);
-    window.scrollTo({
-      top: targetElement.offsetTop - 50, // Adjust for fixed navbar
-      behavior: "smooth",
-    });
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target) {
+      target.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
   });
 });
 
-// Scroll-to-top button functionality
-const scrollToTopButton = document.createElement("button");
-scrollToTopButton.textContent = "↑";
-sc
+// Handle contact form submission
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // You can add form validation and submission logic here
+  alert('Thank you for your message!');
+  this.reset();
+});
